@@ -14,7 +14,7 @@ header('X-Accel-Buffering: no');
 $apiKey = 'ragflow-E4MzRjNWVlMmM4NjExZjBiNzA1NzZlMm'; // RAGFlow API KEY
 
 $client = new Client([
-    'base_uri' => 'http://192.168.255.253',
+    'base_uri' => 'http://192.168.255.253', // address
     'headers'  => [
         'Authorization' => 'Bearer ' . $apiKey,
         'Content-Type'  => 'application/json',
@@ -26,6 +26,7 @@ $payload = '{
     "stream": true
   }';
 
+// /api/v1/agents_openai/{agent_id}/chat/completions
 $response = $client->request('POST', '/api/v1/agents_openai/b5afd902282b11f1b10c1ef36ef08cf2/chat/completions', [
     'stream' => true,
     'body'   => $payload,
