@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>SSE</title>
+</head>
+
+<body>
+    <div id="text">
+        </div>
+    <script>
+        let text = "Hello World"
+        let sse = new EventSource('SSE.php?text=' + encodeURI(text));
+        sse.addEventListener("open", (e) => {
+            console.log(e);
+        });
+        sse.addEventListener("message", (e) => {
+            let pullData = JSON.parse(e.data);
+            document.getElementById("text").innerHTML += pullData;
+        });
+        sse.addEventListener("error", (e) => {
+            console.log(e);
+            sse.close();
+        });
+    </script>
+
+</html>
